@@ -1,0 +1,73 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="robots" content="index, follow, archive">
+        <meta name="keywords" content="{{ settings.core.PortfolioSettings.seo_keywords|default:"" }}">
+        <meta name="description" content="{{ settings.core.PortfolioSettings.seo_description|default:"" }}">
+<!--        <meta name="description" content="Yannick Chabbert, architecte et développeur Python Django Rest Framework" />-->
+        <meta name="author" content="Yannick Chabbert" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+
+    <body id="page-top">
+
+        <!-- Navigation -->
+        {% block navbar %}
+        {% include 'navbar.html' %}
+        {% endblock %}
+
+        {% wagtailuserbar %}
+
+        {% block content %}{% endblock %}
+
+        <!-- Footer -->
+        {% block footer %}
+        {% include 'footer.html' %}
+        {% endblock %}
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+{#        <script src="assets/mail/jqBootstrapValidation.js"></script>#}
+{#        <script src="assets/mail/contact_me.js"></script>#}
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+
+        <!-- Google Analytics -->
+        {% with ga_id=settings.core.PortfolioSettings.google_analytics_id %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ ga_id }}');
+        </script>
+        {% endwith %}
+
+    </body>
+</html>

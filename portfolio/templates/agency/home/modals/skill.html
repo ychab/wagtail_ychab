@@ -1,0 +1,31 @@
+{% load static i18n wagtailimages_tags %}
+
+<div class="portfolio-modal modal fade" id="portfolioModal{{ index }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <img src="{% static 'assets/img/close-icon.svg' %}" alt="{% trans 'Fermer la fenêtre' %}" />
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+
+                            <h2 class="text-uppercase">{{ skill.name }}</h2>
+                            <p class="item-intro text-muted">{{ skill.intro }}</p>
+
+                            {% image skill.image fill-700x933 class="img-fluid d-block mx-auto" %}
+                            <p>{{ skill.text }}</p>
+
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fas fa-times mr-1"></i>
+                                {% trans 'Fermer' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

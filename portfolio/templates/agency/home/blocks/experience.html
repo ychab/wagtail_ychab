@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+
+<li{% if index|divisibleby:"2" %} class="timeline-inverted"{% endif %}>
+    <div class="timeline-image">
+        {% image value.image fill-200x200 class="rounded-circle img-fluid" %}
+    </div>
+
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4>{{ value.date }}</h4>
+            {% if value.subheading %}
+            <h4 class="subheading">{{ value.subheading }}</h4>
+            {% endif %}
+        </div>
+        <div class="timeline-body"><p class="text-muted">{{ value.text }}</p></div>
+    </div>
+</li>

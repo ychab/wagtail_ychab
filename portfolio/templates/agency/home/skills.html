@@ -1,0 +1,25 @@
+{% load i18n wagtailcore_tags %}
+
+<!-- Skills -->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            {% trans 'Mes compétences' as heading_default %}
+            <h2 class="section-heading text-uppercase">{{ self.skill_heading|default:heading_default }}</h2>
+            {% if self.skill_subheading %}
+                <h3 class="section-subheading text-muted">{{ self.skill_subheading }}</h3>
+            {% endif %}
+        </div>
+
+        <div class="row">
+        {% for skill in self.skills %}
+            {% include_block skill with index=forloop.counter %}
+        {% endfor  %}
+        </div>
+
+    </div>
+</section>
+
+{% for skill in self.skills %}
+    {% include 'home/modals/skill.html' with skill=skill.value index=forloop.counter %}
+{% endfor %}

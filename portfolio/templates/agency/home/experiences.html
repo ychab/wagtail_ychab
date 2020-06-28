@@ -1,0 +1,28 @@
+{% load i18n wagtailcore_tags %}
+
+<!-- Expériences -->
+<section class="page-section" id="about">
+    <div class="container">
+
+        <div class="text-center">
+            {% trans 'Mon parcours' as heading_default %}
+            <h2 class="section-heading text-uppercase">{{ self.experience_heading|default:heading_default }}</h2>
+            {% if self.experience_subheading %}
+            <h3 class="section-subheading text-muted">{{ self.experience_subheading }}</h3>
+            {% endif %}
+        </div>
+
+        <ul class="timeline">
+            {% for experience in self.experiences %}
+            {% include_block experience with index=forloop.counter %}
+            {% endfor  %}
+
+            <li>
+                <div class="timeline-image">
+                    <h4>{% trans 'Freelance !' %}</h4>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</section>
